@@ -1,0 +1,19 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam nodesep 100
+skinparam ranksep 80
+
+class Moneda {
+- id: long
+- codigo: String
+- nombre: String
+}
+
+class Cotizacion {
+- id: long
+- fecha: LocalDate
+- valor: double
+}
+
+Moneda "1" - "*" Cotizacion
+@enduml

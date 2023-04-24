@@ -1,0 +1,21 @@
+@startuml
+skinparam nodesep 100
+skinparam ranksep 80
+
+entity Moneda {
+  * id : INTEGER <<AUTOINCREMENT>>
+  --
+  * codigo: TEXT
+  nombre: TEXT
+}
+
+entity Cotizacion {
+  * id : INTEGER <<AUTOINCREMENT>>
+  --
+  * fecha: TEXT
+  * valor: REAL
+  * moneda_id : INTEGER <<FK>>
+}
+
+Moneda ||-|{ Cotizacion
+@enduml
