@@ -14,7 +14,9 @@ public class VentanaPrincipal {
     private JList<Moneda> lista;
     private JTable tabla;
 
-    private List<Moneda> monedas;
+    //private List<Moneda> monedas;
+    private Grafico grafico = null;
+    private Moneda last_Selected;
 
     public VentanaPrincipal() {
         GestorBD.leerDatos();
@@ -22,16 +24,20 @@ public class VentanaPrincipal {
         tabla.setModel(new ModeloTabla());
         lista.addListSelectionListener(e -> {
             Moneda selected = lista.getSelectedValue();
+            if (selected != last_Selected) grafico = null;
             List<Cotizacion> asociadas = new ArrayList<>();
             for (Cotizacion cotizacion : Main.Cotizaciones()) {
                 if (cotizacion.getMoneda_Aso() == selected) asociadas.add(cotizacion);
             }
-            if (asociadas.size() > 0) tabla.setModel(new ModeloTabla(asociadas));
-            else {
+            if (asociadas.size() > 0) {
+                tabla.setModel(new ModeloTabla(asociadas));
+                if (grafico == null) grafico = new Grafico(selected);
+            } else {
                 JOptionPane.showMessageDialog(null, "Moneda sin Cotizaciones asociadas",
                         "Sin registros", JOptionPane.INFORMATION_MESSAGE);
                 tabla.setModel(new ModeloTabla());
             }
+            last_Selected = selected;
         });
     }
 
@@ -46,11 +52,4 @@ public class VentanaPrincipal {
         }
         lista.setModel(model);
     }
-
-    /*private static Moneda Receta_Selected(String titulo) {
-        for (Moneda receta : Main.Monedas()) {
-            if (receta.getTitulo().equals(titulo)) return receta;
-        }
-        return null;
-    }*/
 }

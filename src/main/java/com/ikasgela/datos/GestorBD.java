@@ -1,7 +1,10 @@
 package com.ikasgela.datos;
 
 import com.ikasgela.Main;
+import com.ikasgela.ui.ModeloTabla;
+import jdk.incubator.vector.VectorOperators;
 
+import javax.swing.*;
 import java.sql.*;
 
 import java.time.LocalDate;
@@ -12,7 +15,7 @@ public class GestorBD {
     private static final List<Moneda> monedas_Result = new ArrayList<>();
     private static final List<Cotizacion> cotizaciones_Result = new ArrayList<>();
 
-    public static List<Moneda> leerDatos() {
+    public static void leerDatos() {
         String cad_Conexion = "jdbc:sqlite:criptomonedas.db";
         try {
             Connection conexion = DriverManager.getConnection(cad_Conexion);
@@ -44,9 +47,10 @@ public class GestorBD {
             Main.setMonedas(monedas_Result);
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            JOptionPane.showMessageDialog(null, "Algo ha ido mal obtenido los registros, intenta nuevamente",
+                    "Sin registros", JOptionPane.ERROR_MESSAGE);
         }
-        return null;
+
     }
 
 

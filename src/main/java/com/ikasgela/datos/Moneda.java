@@ -9,6 +9,7 @@ public class Moneda {
     private String nombre;
 
     private List<Cotizacion> cotizaciones = new ArrayList<>();
+
     public Moneda(long id, String codigo, String nombre, List<Cotizacion> cotizaciones) {
         this.id = id;
         this.codigo = codigo;
@@ -59,6 +60,6 @@ public class Moneda {
 
     @Override
     public String toString() {
-        return codigo+"("+nombre+")";
+        return codigo + "(" + nombre + ")";
     }
 }
