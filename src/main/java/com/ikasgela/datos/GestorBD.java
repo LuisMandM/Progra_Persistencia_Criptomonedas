@@ -1,8 +1,6 @@
 package com.ikasgela.datos;
 
 import com.ikasgela.Main;
-import com.ikasgela.ui.ModeloTabla;
-import jdk.incubator.vector.VectorOperators;
 
 import javax.swing.*;
 import java.sql.*;
